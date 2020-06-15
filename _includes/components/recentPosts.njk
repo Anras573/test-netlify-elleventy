@@ -1,0 +1,47 @@
+<section class="recent-posts">
+	{% for post in postslist | reverse %}
+		<article class="recent-post">
+			{% if post.data.featuredimage %}
+        <a href="{{ post.url | url }}">
+          <div class="zoom">
+            <img src="{{ post.data.featuredimage }}" loading="lazy" alt="post cover image">
+          </div>
+        </a>
+      {% endif %}
+      <div class="post-metadata">
+        <span class="post-date">
+          <time datetime="{{ post.date | machineDate }}">
+            {{ post.date | readableDate }}
+        </time>
+        </span>
+        <div class="post-tags">
+          {% if post.data.tags %}
+            {% for tag in post.data.tags %}
+              {%- if tag != "post" -%}
+                {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+                <a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
+              {%- endif -%}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <h2 class="recent-post-title">
+        <a href="{{ post.url | url }}">
+          {% if post.data.title %}
+						{{ post.data.title }}
+					{% else %}
+						Untitled
+					{% endif %}
+        </a>
+      </h2>
+			{% if post.data.summary %}
+				<p>
+					{{ post.data.summary }}
+				</p>
+			{% endif %}
+			<div class="author">
+				{{ post.data.author }}
+			</div>
+		</article>
+	{% endfor %}
+</section>

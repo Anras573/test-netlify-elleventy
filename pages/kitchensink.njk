@@ -1,0 +1,498 @@
+---
+layout:
+title: Kitchensink
+date: 2020-05-18T00:00:00.000Z
+permalink: /kitchensink/index.html
+---
+
+<!doctype html>
+<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://identity.netlify.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or renderData.title or metadata.title }}</title>
+
+  {% set css %}
+    {% include "assets/css/inline.css" %}
+  {% endset %}
+  <style>{{ css | postcss | safe }}</style>
+
+  <style>
+    code {
+      color: var(--link-hover);
+    }
+  </style>
+</head>
+
+	<body>
+    <div class="container">
+      <h1 class="page-title center">
+        <a href="/kitchensink/">
+          Kitchen Sink
+        </a>
+      </h1>
+
+      <!-- Atoms -->
+      <section>
+        <h5 class="section-title">Atoms</h5>
+        <hr>
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Headings</h5>
+          </div>
+
+          <h1>This is heading level 1</h1>
+          <h2>This is heading level 2</h2>
+          <h3>This is heading level 3</h3>
+          <h4>This is heading level 4</h4>
+          <h5>This is heading level 5</h5>
+
+          <p>Add <code>.page-title</code> class to h1 to create an page title, and insert an a-link to make it into an clickable title</p>
+
+          <h1 class="page-title">
+            <a href="{{ '/' | url }}">{{ metadata.title }}</a>
+          </h1>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Colors</h5>
+          </div>
+
+          <p>Primary Background Color</p>
+          <section class="section" style="background-color: var(--primary-background);"></section>
+
+          <p>Secondary Background Color</p>
+          <section class="section" style="background-color: var(--secondary-background);"></section>
+
+          <p>Text Color</p>
+          <section class="section" style="background-color: var(--text);"></section>
+
+          <p>Link Color</p>
+          <section class="section" style="background-color: var(--link);"></section>
+
+          <p>Link Color Hover</p>
+          <section class="section" style="background-color: var(--link-hover);"></section>
+
+          <p>Border Color</p>
+          <section class="section" style="background-color: var(--border);"></section>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Utilities</h5>
+          </div>
+
+          <p class="center">Add <code>.center</code> class to center text and images</p>
+        </section>
+
+      </section>
+
+      <!-- Molecules -->
+      <section>
+        <h5 class="section-title">Molecules</h5>
+        <hr>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Nav</h5>
+          </div>
+
+          <nav>
+            {% set navPages = collections.all | eleventyNavigation %}
+            <ul>
+            {%- for entry in navPages %}
+              <li>
+                <a href="{{ entry.url | url }}"{% if entry.url == page.url %} data-current="current item"{% endif %}>{{ entry.title }}</a>
+              </li>
+            {%- endfor %}
+            </ul>
+          </nav>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Section</h5>
+          </div>
+
+          <p>A section is a container wrapping other molecules and together they form the organism of the site. A section also comes with a slight box-shadow effect.</p>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Post Metadata</h5>
+          </div>
+
+          <p>Post metadata, contains the date, and the tags of the post</p>
+
+          <div class="post-metadata">
+            <span class="post-date">
+              <time datetime="2018-12-18">
+                18 Dec 2018
+              </time>
+            </span>
+            <div class="post-tags">
+              <a href="/tags/flavor/" rel="tag">flavor</a>
+              <a href="/tags/tasting/" rel="tag">tasting</a>
+            </div>
+          </div>
+
+          <p>Add <code>.post-metadata-center</code> class to center the metadata</p>
+
+          <div class="post-metadata post-metadata-center">
+            <span class="post-date">
+              <time datetime="2018-12-18">
+                18 Dec 2018
+              </time>
+            </span>
+            <div class="post-tags">
+              <a href="/tags/flavor/" rel="tag">flavor</a>
+              <a href="/tags/tasting/" rel="tag">tasting</a>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Images</h5>
+          </div>
+
+          <div class="row">
+            <section class="col-main">
+
+              <section class="section">
+                <div class="section-header">
+                  <h5 class="section-title">Default Images</h5>
+                </div>
+
+                <p>By default images takes up 100% of the availble width, and they come with rounded corners too.</p>
+
+                <img src="/static/img/43-1200x600.jpg" loading="lazy" alt="placeholder image">
+              </section>
+
+              <section class="section">
+                <div class="section-header">
+                  <h5 class="section-title">Zoom Images</h5>
+                </div>
+
+                <p>A zoom image is an image that have a zooming effect when hovered.</p>
+
+                <div class="zoom">
+                  <img src="/static/img/43-1200x600.jpg" loading="lazy" alt="placeholder image">
+                </div>
+              </section>
+
+            </section>
+
+            <aside class="col-aside">
+              <section class="section">
+                <div class="section-header">
+                  <h5 class="section-title">Round Images</h5>
+                </div>
+
+                <p>Images also comes in round shapes!</p>
+
+                <img class="rounded-img" src="/static/img/IMG_6211.JPG" loading="lazy" alt="placeholder image">
+
+                <p>And they can zoom too!</p>
+
+                <div class="zoom rounded-img">
+                  <img class="rounded-img" src="/static/img/IMG_6211.JPG" loading="lazy" alt="placeholder image">
+                </div>
+              </section>
+            </aside>
+          </div>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Input</h5>
+          </div>
+
+          <p>Inputs are styled with <code>width: 100%;</code> by default, and with rounded corners too.</p>
+          <p>Textareas are styled as input fields for consistency</p>
+
+          <label for="input-text">text</label>
+          <input type="text" id="input-text">
+
+          <label for="input-number">number</label>
+          <input type="number" id="input-number">
+
+          <label for="input-email">email</label>
+          <input type="email" id="input-email">
+
+          <label for="input-password">password</label>
+          <input type="password" id="input-password">
+
+          <label for="input-search">search</label>
+          <input type="search" id="input-search">
+
+          <label for="input-textarea">Textarea</label>
+          <textarea id="input-textarea"></textarea>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Buttons</h5>
+          </div>
+
+         <button>Button</button>
+
+        </section>
+
+      </section>
+
+      <!-- Organisms -->
+      <section>
+        <h5 class="section-title">Organisms</h5>
+        <hr>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Navbar</h5>
+          </div>
+
+          <p>Use a section without a header to create a navbar</p>
+
+          <section class="section">
+            <nav>
+              {% set navPages = collections.all | eleventyNavigation %}
+              <ul>
+              {%- for entry in navPages %}
+                <li>
+                  <a href="{{ entry.url | url }}"{% if entry.url == page.url %} data-current="current item"{% endif %}>{{ entry.title }}</a>
+                </li>
+              {%- endfor %}
+              </ul>
+            </nav>
+          </section>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Recipe Block</h5>
+          </div>
+
+          <p>A list of ingredients, featuring automatic update of quantities in the list</p>
+
+          <section class="section recipe-block">
+            <div class="section-header">
+              <h5 class="section-title">Ingredienser</h5>
+            </div>
+
+            <div class="recipe-input">
+              <label for="numberOfPeople">Personer: </label>
+              <input name="numberOfPeople" type="number" pattern="[0-9]*" value="2" data-initialValue="2" data-recipeBlock min="1" />
+            </div>
+
+            <ul class="ingredients-list">
+              <li><span data-initialValue="150" data-quantity>150</span> g smør</li>
+              <li><span data-initialValue="150" data-quantity>150</span> g sukker</li>
+              <li><span data-initialValue="1" data-quantity>1</span> æg</li>
+              <li><span data-initialValue="150" data-quantity>150</span> g hvedemel</li>
+            </ul>
+
+            <div class="section-header">
+              <h5 class="section-title">Fremgangsmåde</h5>
+            </div>
+
+            <div class="course-of-action">
+              <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-content">Tænd ovnen på 150 grader varmluft.</div>
+              </div>
+              <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-content">Tilsæt mælk, æg og olie og bland det godt sammen.</div>
+              </div>
+              <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-content">Rør nu melblandingen i æggemassen og vend det hele forsigtigt sammen.</div>
+              </div>
+              <div class="step">
+                <span class="step-number">4</span>
+                <div class="step-content">Fordel dejen i 12 store muffinforme med to skeer.</div>
+              </div>
+              <div class="step">
+                <span class="step-number">5</span>
+                <div class="step-content">Kom dem i ovnen og bag i 18-20 min.</div>
+              </div>
+            </div>
+          </section>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Recent Posts</h5>
+          </div>
+
+          <p>Use a section to wrap the list</p>
+
+          <div class="recent-posts">
+            {% for i in range(0, 2) %}
+              <article class="recent-post">
+                <a href="/static/img/43-1200x600.jpg">
+                  <div class="zoom">
+                    <img src="/static/img/43-1200x600.jpg" loading="lazy" alt="placeholder image">
+                  </div>
+                </a>
+                <div class="post-metadata">
+                  <span class="post-date">
+                    <time datetime="2018-12-18">
+                      18 Dec 2018
+                    </time>
+                  </span>
+                  <div class="post-tags">
+                    <a href="/tags/flavor/" rel="tag">flavor</a>
+                    <a href="/tags/tasting/" rel="tag">tasting</a>
+                  </div>
+                </div>
+                <h2 class="recent-post-title">
+                  <a href="/static/img/43-1200x600.jpg">Making sense of the SCAA’s new Flavor Wheel</a>
+                </h2>
+                <div class="author">
+                  Cathrine Autzen
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Contact Form</h5>
+          </div>
+
+          <p>Use a section to create a Contact Form</p>
+
+          <section class="section">
+            <div class="section-header">
+              <h5 class="section-title">Contact Us</h5>
+            </div>
+
+            <form>
+              <label for="contact-mail">Mail</label>
+              <input type="email" id="contact-mail">
+
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject">
+
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" row="7"></textarea>
+
+              <input type="submit" value="Submit">
+            </form>
+          </section>
+
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h5 class="section-title">Layout</h5>
+          </div>
+
+          <p>Use a section to wrap the list</p>
+
+          <div class="row">
+            <section class="col-main">
+
+              <section class="section">
+                <div class="recent-posts">
+                  {% for i in range(0, 2) %}
+                    <article class="recent-post">
+                      <a href="/static/img/43-1200x600.jpg">
+                        <div class="zoom">
+                          <img src="/static/img/43-1200x600.jpg" loading="lazy" alt="placeholder image">
+                        </div>
+                      </a>
+                      <div class="post-metadata">
+                        <span class="post-date">
+                          <time datetime="2018-12-18">
+                            18 Dec 2018
+                          </time>
+                        </span>
+                        <div class="post-tags">
+                          <a href="/tags/flavor/" rel="tag">flavor</a>
+                          <a href="/tags/tasting/" rel="tag">tasting</a>
+                        </div>
+                      </div>
+                      <h2 class="recent-post-title">
+                        <a href="/static/img/43-1200x600.jpg">Making sense of the SCAA’s new Flavor Wheel</a>
+                      </h2>
+                      <div class="author">
+                        Cathrine Autzen
+                      </div>
+                    </article>
+                  {% endfor %}
+                </div>
+              </section>
+
+              <section class="section">
+                <div class="recent-posts">
+                  {% for i in range(0, 2) %}
+                    <article class="recent-post">
+                      <a href="/static/img/43-1200x600.jpg">
+                        <div class="zoom">
+                          <img src="/static/img/43-1200x600.jpg" loading="lazy" alt="placeholder image">
+                        </div>
+                      </a>
+                      <div class="post-metadata">
+                        <span class="post-date">
+                          <time datetime="2018-12-18">
+                            18 Dec 2018
+                          </time>
+                        </span>
+                        <div class="post-tags">
+                          <a href="/tags/flavor/" rel="tag">flavor</a>
+                          <a href="/tags/tasting/" rel="tag">tasting</a>
+                        </div>
+                      </div>
+                      <h2 class="recent-post-title">
+                        <a href="/static/img/43-1200x600.jpg">Making sense of the SCAA’s new Flavor Wheel</a>
+                      </h2>
+                      <div class="author">
+                        Cathrine Autzen
+                      </div>
+                    </article>
+                  {% endfor %}
+                </div>
+              </section>
+
+            </section>
+
+            <aside class="col-aside">
+              <section class="section">
+                <div class="section-header">
+                  <h5 class="section-title">About</h5>
+                </div>
+
+                <div class="zoom rounded-img">
+                  <img class="rounded-img" src="{{ metadata.about.image }}" loading="lazy" alt="A photo of Anders and Cathrine">
+                </div>
+
+                <p>{{ metadata.about.description }}</p>
+              </section>
+            </aside>
+          </div>
+
+        </section>
+
+      </section>
+    </div>
+
+    {% set js %}
+      {% include "assets/js/inline.js" %}
+    {% endset %}
+    <script>{{ js | jsmin | safe }}</script>
+	</body>
+
+</html>

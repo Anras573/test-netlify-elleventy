@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+section: post
+---
+
+<article class="section">
+  <div class="center">
+    <div class="post-metadata post-metadata-center">
+      <span class="post-date">
+        <time datetime="{{ date | machineDate }}">
+          {{ date | readableDate }}
+        </time>
+      </span>
+      <div class="post-tags">
+        {% if tags %}
+          {% for tag in tags %}
+            {%- if tag != "post" -%}
+              {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+              <a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
+            {%- endif -%}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <h1 class="post-title">{{ title }}</h1>
+
+    <div class="author-footer">
+      {{ metadata.author.name }}
+    </div>
+  </div>
+
+
+  {{ layoutContent | safe }}
+</article>
+
+<nav>
+  <a href="{{ '/blog/' | url }}">← Blog index</a>
+</nav>

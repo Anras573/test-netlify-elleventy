@@ -1,0 +1,55 @@
+---
+layout: layouts/home.njk
+title: Home
+date: 2016-01-01T00:00:00.000Z
+permalink: /
+eleventyNavigation:
+  key: Home
+  order: 0
+---
+
+<div class="row">
+
+  <section class="col-main">
+    <section class="section">
+      <div class="section-header">
+        <h5 class="section-title">Cathrine</h5>
+      </div>
+
+      <div>
+        {% set postslist = collections.post | author('Cathrine Autzen') | head(-2) %}
+        {% include "components/recentPosts.njk" %}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h5 class="section-title">Anders</h5>
+      </div>
+
+      <div>
+        {% set postslist = collections.post | author('Anders Bo Rasmussen') |  head(-2) %}
+        {% include "components/recentPosts.njk" %}
+      </div>
+    </section>
+  </section>
+
+  <aside class="col-aside">
+    <section class="section">
+      <div class="section-header">
+        <h5 class="section-title">About Us</h5>
+      </div>
+
+      <div class="zoom rounded-img">
+        <img class="rounded-img" src="{{ metadata.about.image }}" loading="lazy" alt="A photo of Anders and Cathrine">
+      </div>
+
+      <p>{{ metadata.about.description }}</p>
+    </section>
+  </aside>
+
+</div>
+
+
+
+

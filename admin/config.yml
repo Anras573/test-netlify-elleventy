@@ -1,9 +1,6 @@
 backend:
-  name: test-repo
-
-# backend:
-#   name: git-gateway
-#   branch: master # Branch to update (optional; defaults to master)
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
 
 # Uncomment below to enable drafts
 publish_mode: editorial_workflow

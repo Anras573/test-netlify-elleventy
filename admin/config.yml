@@ -22,6 +22,24 @@ collections:
       - { label: "Author", name: "author", widget: "select", options: ["Cathrine Autzen", "Anders Bo Rasmussen"]}
       - { label: "Featured Image", name: "featuredimage", widget: "image"}
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Opskrift", name: "recipe-list", widget: "object", collapsed: true, required: false, fields:
+        [
+          { label: 'type', name: 'type', widget: 'select', required: false, options: ['stk', 'personer'] },
+          { label: 'Antal', name: 'quantity', widget: 'number', required: false },
+          { label: 'Ingredienser', name: 'ingredients', widget: 'list', fields:
+            [
+              { label: 'Ingrediens', name: 'ingredient', widget: 'string' },
+              { label: 'Antal', name: 'quantity', widget: 'number' },
+              { label: 'type', name: 'type', widget: 'select', options: ['stk', 'spsk', 'tsks', 'l', 'dl', 'ml', 'g', 'kg'] }
+            ]
+          },
+          { label: 'Fremgangsmåde', name: 'steps', widget: 'list', fields:
+            [
+              { label: 'Step', name: 'step', widget: 'string' }
+            ]
+          }
+        ]
+      }
     preview_path: blog/{{slug}}
   # Our pages e.g. About
   - name: "pages"

@@ -7,9 +7,7 @@ tags:
 author: Anders Bo Rasmussen
 featuredimage: /static/img/60085302_336910603680850_8650401452285493248_n.jpg
 test:
-  - Test
-  - af
-  - widgets
+  - ""
 recipe-list:
   type: personer
   quantity: 4

@@ -1,11 +1,8 @@
 {
   "title": "Skønheden & Nørden",
   "url": "https://mystifying-elion-83d184.netlify.app",
-  "author": {
-    "name": "Anders Bo Rasmussen",
-    "email": "anras573@gmail.com",
-    "github": "https://github.com/anras573"
-  },
+  "authors": [ "Anders Bo Rasmussen", "Cathrine Autzen" ],
+  "coverimage": "https://picsum.photos/1200/500",
   "about": {
     "description": "Hej! Vi er Anders og Cathrine, også kendt som Skønheden & Nørden",
     "image": "/static/img/IMG_6211.JPG"
